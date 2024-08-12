@@ -11,7 +11,9 @@ class TextWidgets extends StatelessWidget {
       children: [
         Container(
           width: 100,
-          decoration: BoxDecoration(border: Border.all()),
+          decoration: BoxDecoration(
+            border: Border.all(),
+          ),
           child: const Text(
               maxLines: 1, overflow: TextOverflow.ellipsis, "Widget de Texto"),
         ),
@@ -26,23 +28,30 @@ class TextWidgets extends StatelessWidget {
         Container(
           width: 100,
           decoration: BoxDecoration(border: Border.all()),
-          child: const Text.rich(TextSpan(
+          child: const Text.rich(
+            TextSpan(
               text: "Rich Text!",
               children: <TextSpan>[
                 TextSpan(
-                    text: "Bold", style: TextStyle(fontWeight: FontWeight.bold))
-              ])),
+                  text: "Bold",
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
+          ),
         ),
-        InkWell(
-          onTap: () {},
-          child: Container(
-            width: 100,
-            decoration: BoxDecoration(border: Border.all()),
-            child: DefaultTextStyle.merge(
-              style: const TextStyle(fontStyle: FontStyle.italic),
-              child: const Text.rich(
-                TextSpan(
-                  text: "Texto Interagível",
+        Material(
+          child: InkWell(
+            onTap: () {},
+            child: Container(
+              width: 100,
+              decoration: BoxDecoration(border: Border.all()),
+              child: DefaultTextStyle.merge(
+                style: const TextStyle(fontStyle: FontStyle.italic),
+                child: const Text.rich(
+                  TextSpan(
+                    text: "Texto Interagível",
+                  ),
                 ),
               ),
             ),
