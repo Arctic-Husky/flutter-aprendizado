@@ -1,5 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application/widgets/interaction/absorb_pointer_widget.dart';
+import 'package:flutter_application/widgets/interaction/ignore_pointer_widget.dart';
+import 'package:flutter_application/widgets/interaction/interactive_viewer_widget.dart';
 import 'dart:math' as math;
+import '../../widgets/interaction/draggable_widget.dart';
+import '../../widgets/text/text_widgets.dart';
+import '../../widgets/scaffold/scaffold_widget.dart';
+import '../../widgets/interaction/draggable_scrollable_sheet_widget.dart';
 
 class TesteWidgetsPage extends StatefulWidget {
   const TesteWidgetsPage({super.key});
@@ -34,10 +41,9 @@ class TesteWidgetsPageState extends State<TesteWidgetsPage> {
     ),
     Container(
       alignment: Alignment.center,
-      child: Stack(alignment: Alignment.center, children: [
-        Image.network(
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsa3K1PkfEgVzc6JeayE-uGwejpsBDBbVBUw&s"),
-        const Text("Laranjas"),
+      child: const Stack(alignment: Alignment.center, children: [
+        FlutterLogo(),
+        Text("Laranjas"),
       ]),
     ),
     Container(
@@ -86,7 +92,40 @@ class TesteWidgetsPageState extends State<TesteWidgetsPage> {
         ),
       ),
     ),
-    Container(),
+    Container(alignment: Alignment.center, child: TextWidgets()),
+    const ScaffoldWidget(),
+    Container(
+      alignment: Alignment.center,
+      child: const MyDraggableWidget(),
+    ),
+    Container(
+      alignment: Alignment.center,
+      child: const MyDragTargetWidget(),
+    ),
+    Container(
+      alignment: Alignment.center,
+      child: const DraggableScrollableSheetWidget(
+        widget: TextWidgets(),
+      ),
+    ),
+    Container(
+      alignment: Alignment.center,
+      child: const AbsorbPointerWidget(
+        widget: MyDragTargetWidget(),
+      ),
+    ),
+    Container(
+      alignment: Alignment.center,
+      child: const IgnorePointerWidget(
+        widget: MyDragTargetWidget(),
+      ),
+    ),
+    Container(
+      alignment: Alignment.center,
+      child: const InteractiveViewerWidget(
+        widget: MyDragTargetWidget(),
+      ),
+    ),
   ];
 
   @override
@@ -104,13 +143,57 @@ class TesteWidgetsPageState extends State<TesteWidgetsPage> {
           print(widgets.length);
           return LayoutBuilder(
             builder: (l2Context, l2Constraints) {
-              return Container(
-                child: widgets[gridIndex],
+              return Dismissible(
+                key: ValueKey<Widget>(widgets[gridIndex]),
+                onDismissed: (direction) {
+                  setState(() {
+                    widgets.removeAt(gridIndex);
+                  });
+                },
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (ctx) => Scaffold(
+                          body: Hero(
+                            tag: 'hero-$gridIndex',
+                            flightShuttleBuilder: _flightShuttleBuilder,
+                            child: Container(
+                              alignment: Alignment.center,
+                              child: widgets[gridIndex],
+                            ),
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                  child: Card(
+                    child: Hero(
+                      tag: 'hero-$gridIndex',
+                      flightShuttleBuilder: _flightShuttleBuilder,
+                      child: widgets[gridIndex],
+                    ),
+                  ),
+                ),
               );
             },
           );
         },
       ),
+    );
+  }
+
+  Widget _flightShuttleBuilder(
+    BuildContext flightContext,
+    Animation<double> animation,
+    HeroFlightDirection flightDirection,
+    BuildContext fromHeroContext,
+    BuildContext toHeroContext,
+  ) {
+    return DefaultTextStyle(
+      style: DefaultTextStyle.of(toHeroContext).style,
+      child: toHeroContext.widget,
     );
   }
 }
