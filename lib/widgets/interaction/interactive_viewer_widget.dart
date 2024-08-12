@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 
 class InteractiveViewerWidget extends StatelessWidget {
-  const InteractiveViewerWidget({super.key, required this.widget});
-
-  final Widget widget;
+  const InteractiveViewerWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

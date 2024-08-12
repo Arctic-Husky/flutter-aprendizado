@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application/widgets/interaction/absorb_pointer_widget.dart';
 import 'package:flutter_application/widgets/interaction/ignore_pointer_widget.dart';
 import 'package:flutter_application/widgets/interaction/interactive_viewer_widget.dart';
+import 'package:flutter_application/widgets/layout/single_child_widgets.dart';
 import 'dart:math' as math;
 import '../../widgets/interaction/draggable_widget.dart';
 import '../../widgets/text/text_widgets.dart';
@@ -92,7 +93,7 @@ class TesteWidgetsPageState extends State<TesteWidgetsPage> {
         ),
       ),
     ),
-    Container(alignment: Alignment.center, child: TextWidgets()),
+    Container(alignment: Alignment.center, child: const TextWidgets()),
     const ScaffoldWidget(),
     Container(
       alignment: Alignment.center,
@@ -122,9 +123,15 @@ class TesteWidgetsPageState extends State<TesteWidgetsPage> {
     ),
     Container(
       alignment: Alignment.center,
-      child: const InteractiveViewerWidget(
-        widget: MyDragTargetWidget(),
-      ),
+      child: const InteractiveViewerWidget(),
+    ),
+    const AlignWidget(),
+    const AspectRatioWidget(),
+    const BaselineWidget(),
+    const CenterWidget(),
+    Container(
+      alignment: Alignment.center,
+      child: const ConstrainedBoxWidget(),
     ),
   ];
 
