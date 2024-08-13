@@ -133,6 +133,15 @@ class TesteWidgetsPageState extends State<TesteWidgetsPage> {
       alignment: Alignment.center,
       child: const ConstrainedBoxWidget(),
     ),
+    const CustomSingleChildLayoutWidget(),
+    const ExpandedWidget(),
+    const IntrinsicHeightWidget(),
+    const IntrinsicWidthWidget(),
+    const LimitedBoxWidget(),
+    const OffstageWidget(),
+    const OverflowBoxWidget(),
+    const SizedBoxWidget(),
+    const SizedOverflowBoxWidget(),
   ];
 
   @override
