@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application/widgets/interaction/absorb_pointer_widget.dart';
 import 'package:flutter_application/widgets/interaction/ignore_pointer_widget.dart';
 import 'package:flutter_application/widgets/interaction/interactive_viewer_widget.dart';
+import 'package:flutter_application/widgets/layout/multi_child_widgets.dart';
 import 'package:flutter_application/widgets/layout/single_child_widgets.dart';
 import 'dart:math' as math;
 import '../../widgets/interaction/draggable_widget.dart';
 import '../../widgets/text/text_widgets.dart';
 import '../../widgets/scaffold/scaffold_widget.dart';
 import '../../widgets/interaction/draggable_scrollable_sheet_widget.dart';
+import 'package:flutter/cupertino.dart' as cupertino;
 
 class TesteWidgetsPage extends StatefulWidget {
   const TesteWidgetsPage({super.key});
@@ -139,9 +141,25 @@ class TesteWidgetsPageState extends State<TesteWidgetsPage> {
     const IntrinsicWidthWidget(),
     const LimitedBoxWidget(),
     const OffstageWidget(),
-    const OverflowBoxWidget(),
+    Container(alignment: Alignment.center, child: const OverflowBoxWidget()),
     const SizedBoxWidget(),
     const SizedOverflowBoxWidget(),
+    cupertino.CupertinoTimerPicker(onTimerDurationChanged: (duration) {}),
+    LayoutBuilder(builder: (context, constraints) {
+      return FlowWidget(
+        constraints: constraints,
+      );
+    }),
+    const IndexedStackWidget(widgets: [
+      ExpandedWidget(),
+      IntrinsicHeightWidget(),
+      IntrinsicWidthWidget(),
+      LimitedBoxWidget(),
+      OffstageWidget(),
+      OverflowBoxWidget(),
+    ]),
+    const TableWidget(),
+    const WrapWidget(),
   ];
 
   @override
