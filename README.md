@@ -2,6 +2,28 @@
 
 Não vou colocar todos os widgets que existem aqui, apenas alguns notáveis
 
+# Versão do Flutter utilizada no projeto
+
+```bash
+    flutter --version
+
+    Flutter 3.22.0 • channel stable • https://github.com/flutter/flutter.git
+    Framework • revision 5dcb86f68f (3 months ago) • 2024-05-09 07:39:20 -0500
+    Engine • revision f6344b75dc
+    Tools • Dart 3.4.0 • DevTools 2.34.3
+```
+
+# Packages necessários para o projeto
+
+## http
+link: https://pub.dev/packages/http
+versião usada:
+ - http: ^1.2.2
+
+```bash
+    flutter pub add http
+```
+
 # Widgets Importantes
 
 ## Básicos
